@@ -7,6 +7,7 @@ import * as idbKeyVal from 'idb-keyval';
 export class NgRxjsIndexeddbService {
 
     private _data = {}
+    private sync = false
    
     constructor() { }
 
@@ -24,13 +25,19 @@ export class NgRxjsIndexeddbService {
         }, false);
 
     }
+    setSync(sync){
+        this.sync = !!(sync)
+    }
     set(key, value) {
         this.init(key)
         idbKeyVal.set(key, value)
             .then(() => {
                 this._data[key].next(value)
             })
-        localStorage.setItem('ng-rxjs-indexeddb-' + key, Math.random().toString())
+            if(this.sync){
+                localStorage.setItem('ng-rxjs-indexeddb-' + key, Math.random().toString())
+            }
+        
     }
     get(key) {
         this.init(key)
