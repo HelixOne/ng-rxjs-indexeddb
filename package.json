@@ -1,12 +1,23 @@
 {
   "name": "ng-rxjs-indexeddb",
   "version": "0.0.1",
-  "description": "",
+  "description": "Angular IndexedDb Key Value Store, with rxjs",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT"
+  "keywords": ["angular", "rxjs", "indexeddb"],
+  "author": "zubair Lawrence <zubair@helix.one>",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common":  "^2.0.0",
+    "@angular/compiler":  "^2.0.0",
+    "@angular/core":  "^2.0.0",
+    "@angular/http":  "^2.0.0",
+    "@angular/platform-browser":  "^2.0.0",
+    "@angular/platform-browser-dynamic":  "^2.0.0",
+    "rxjs": "^5.0.0",
+    "typescript": "^2.0.0",
+    "idb-keyval": "^2.3.0"
+  }
 }
