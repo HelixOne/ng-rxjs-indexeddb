@@ -12,18 +12,17 @@ export class NgRxjsIndexeddbService {
     constructor() { }
 
 
-    init(key) {
+    init(key, data?) {
         if (this._data[key]) {
             return
         }
-        this._data[key] = new BehaviorSubject(null);
+        this._data[key] = new BehaviorSubject(data);
         addEventListener('storage', (e: StorageEvent) => {
             let key = e.key.slice(18)
             if (key && this._data[key]) {
                 this.get(key)
             }
         }, false);
-
     }
     setSync(sync){
         this.sync = !!(sync)
@@ -43,7 +42,9 @@ export class NgRxjsIndexeddbService {
         this.init(key)
         idbKeyVal.get(key)
             .then((value) => {
-                this._data[key].next(value)
+                if(value){
+                    this._data[key].next(value)
+                }
             })
         return this.watch(key)
     }
