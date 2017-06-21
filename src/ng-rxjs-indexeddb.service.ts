@@ -50,10 +50,8 @@ export class NgRxjsIndexeddbService {
     }
     del(key) {
         this.init(key)
-        idbKeyVal.get(key)
-            .then(() => {
-                this._data[key].next(null)
-            })
+        idbKeyVal.delete(key)
+        this._data[key].next(null)
     }
     private watch(key) {
         this.init(key)
